@@ -1,0 +1,42 @@
+title, "testmapclass";
+
+! the beam
+!call, file="pbeam_45GeV.madx";
+call, file="mubeam.madx";
+
+! some usefull values
+grad := beam->brho*table(twiss,k1l)/table(twiss,L);
+grads := beam->brho*table(twiss,k2l);
+grado := beam->brho*table(twiss,k3l);
+gradd := beam->brho*table(twiss,k4l);
+grade := beam->brho*table(twiss,k5l);
+natchromx := table(twiss,k1l)*table(twiss,betx);
+natchromy := table(twiss,k1l)*table(twiss,bety);
+sx_mm := sqrt( beam->ex*table(twiss,betx) + ( table(twiss,dx)*beam->sige )^2 )*1e3;
+sy_mm := sqrt( beam->ey*table(twiss,bety) + ( table(twiss,dy)*beam->sige )^2 )*1e3;
+twentysx_mm := 20*sqrt( beam->ex*table(twiss,betx) + ( table(twiss,dx)*beam->sige )^2 )*1e3;
+twentysy_mm := 20*sqrt( beam->ey*table(twiss,bety) + ( table(twiss,dy)*beam->sige )^2 )*1e3;
+SBfield := beam->brho*table(twiss,angle)/table(twiss,L);
+
+
+! the sequence
+call, file="mpt03_v04test.seq";
+use, sequence=mt;
+k1factor := 0.8;
+
+call, file="mubeam.madx";
+! twiss
+call, file="twiss_select.madx";
+twiss, chrom, file="mptline_mu_twiss.tfs";
+select, flag=twiss, clear;
+select, flag=twiss, full;
+!select, flag=twiss, column=NAME, KEYWORD, S, L, BETX, BETY, ALFX, ALFY, MUX, MUY, DX, DPX, DY, DPY, ANGLE, K1L, K2L, K3L, K4L; 
+twiss, chrom, file="mptline_mu_twiss_mapclass.tfs";
+
+!stop;
+!!! MAD-X PTC Code to procude fort.18
+ptc_create_universe;
+ptc_create_layout,model=2,method=6,nst=10;
+ptc_normal,icase=6,no=2;!no is the map order
+ptc_end; 
+!!! End MAD-X Code
