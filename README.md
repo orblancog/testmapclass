@@ -1,5 +1,5 @@
 ```bash
-
+$ madx job.mapclass.madx
 $ python beamsize.py 
   Map order is 2
   ... reading  21 elements
