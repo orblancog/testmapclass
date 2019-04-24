@@ -3,7 +3,7 @@ import metaclass2
 import math
 
 
-maporder = 2
+maporder = 5
 print "  Map order is",maporder
 
 tw = metaclass2.twiss2("mptline_mu_twiss_mapclass.tfs")
@@ -25,17 +25,23 @@ dpp = 0.2
 ct=3e-3;
 
 print "  fort.18 beamsize output"
-meanx=mf.offset('x',[sigmax,divx,sigmay,divy,dpp,ct])
-snd2x=mf.sigma('x',[sigmax,divx,sigmay,divy,dpp,ct])
-meany=mf.offset('y',[sigmax,divx,sigmay,divy,dpp,ct])
-snd2y=mf.sigma('y',[sigmax,divx,sigmay,divy,dpp,ct])
-print "    beamsizex =", math.sqrt(snd2x - meanx**2),';'
-print "    beamsizey =", math.sqrt(snd2y - meany**2),';'
+meanxfr=mf.offset('x',[sigmax,divx,sigmay,divy,dpp,ct])
+snd2xfr=mf.sigma('x',[sigmax,divx,sigmay,divy,dpp,ct])
+meanyfr=mf.offset('y',[sigmax,divx,sigmay,divy,dpp,ct])
+snd2yfr=mf.sigma('y',[sigmax,divx,sigmay,divy,dpp,ct])
+print "    beamsizex =", math.sqrt(snd2xfr - meanxfr**2),';'
+print "    beamsizey =", math.sqrt(snd2yfr - meanyfr**2),';'
 
 print "  twiss beamsize output"
-meanx=mt.offset('x',[sigmax,divx,sigmay,divy,dpp,ct])
-snd2x=mt.sigma('x',[sigmax,divx,sigmay,divy,dpp,ct])
-meany=mt.offset('y',[sigmax,divx,sigmay,divy,dpp,ct])
-snd2y=mt.sigma('y',[sigmax,divx,sigmay,divy,dpp,ct])
-print "    beamsizex =", math.sqrt(snd2x - meanx**2),';'
-print "    beamsizey =", math.sqrt(snd2y - meany**2),';'
+meanxtw=mt.offset('x',[sigmax,divx,sigmay,divy,dpp,ct])
+snd2xtw=mt.sigma('x',[sigmax,divx,sigmay,divy,dpp,ct])
+meanytw=mt.offset('y',[sigmax,divx,sigmay,divy,dpp,ct])
+snd2ytw=mt.sigma('y',[sigmax,divx,sigmay,divy,dpp,ct])
+print "    beamsizex =", math.sqrt(snd2xtw - meanxtw**2),';'
+print "    beamsizey =", math.sqrt(snd2ytw - meanytw**2),';'
+
+
+print "  "
+print "  Difference between beamsize from fort.18 and twiss maps"
+print "    beamsizex =", ( math.sqrt(snd2xfr - meanxfr**2) - math.sqrt(snd2xtw - meanxtw**2) )/ math.sqrt(snd2xfr - meanxfr**2) * 100,"%"
+print "    beamsizey =", ( math.sqrt(snd2yfr - meanyfr**2) - math.sqrt(snd2ytw - meanytw**2) )/ math.sqrt(snd2xfr - meanxfr**2) * 100,"%"

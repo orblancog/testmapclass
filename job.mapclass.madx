@@ -21,22 +21,25 @@ SBfield := beam->brho*table(twiss,angle)/table(twiss,L);
 
 ! the sequence
 call, file="mpt03_v04test.seq";
-use, sequence=mt;
+use, sequence=mt, range=#s/targ;
 k1factor := 0.8;
 
 call, file="mubeam.madx";
 ! twiss
 call, file="twiss_select.madx";
-twiss, chrom, file="mptline_mu_twiss.tfs";
+!twiss, chrom,
+!file="mptline_mu_twiss.tfs";
 select, flag=twiss, clear;
 select, flag=twiss, full;
 !select, flag=twiss, column=NAME, KEYWORD, S, L, BETX, BETY, ALFX, ALFY, MUX, MUY, DX, DPX, DY, DPY, ANGLE, K1L, K2L, K3L, K4L; 
-twiss, chrom, file="mptline_mu_twiss_mapclass.tfs";
+twiss, chrom,
+betx=0.3, bety=0.3,
+file="mptline_mu_twiss_mapclass.tfs";
 
 !stop;
-!!! MAD-X PTC Code to procude fort.18
+!!! MAD-X PTC Code to produce fort.18
 ptc_create_universe;
 ptc_create_layout,model=2,method=6,nst=10;
-ptc_normal,icase=6,no=2;!no is the map order
+ptc_normal,icase=6,no=5;!no is the map order
 ptc_end; 
 !!! End MAD-X Code
