@@ -1,12 +1,14 @@
 ```bash
-$ madx job.mapclass.madx
-$ python beamsize.py 
-  Map order is 2
-  ... reading  21 elements
+  Map order is 5
+  ... reading  4 elements
   fort.18 beamsize output
-    beamsizex = 0.000753458094824 ;
-    beamsizey = 0.0008010349193 ;
+    beamsizex = 0.00031878681845 ;
+    beamsizey = 0.000383664723144 ;
   twiss beamsize output
-    beamsizex = 0.000753455829526 ;
-    beamsizey = 0.00080103360209 ;
+    beamsizex = 0.000318786692839 ;
+    beamsizey = 0.00038357682981 ;
+  
+  Difference between beamsize from fort.18 and twiss maps
+    beamsizex = 3.94028906936e-05 %
+    beamsizey = 0.0275711946391 %
 ```
