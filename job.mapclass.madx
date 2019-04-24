@@ -21,7 +21,7 @@ SBfield := beam->brho*table(twiss,angle)/table(twiss,L);
 
 ! the sequence
 call, file="mpt03_v04test.seq";
-use, sequence=mt, range=#s/targ;
+use, sequence=mt, range=#s/qa01;
 k1factor := 0.8;
 
 call, file="mubeam.madx";
