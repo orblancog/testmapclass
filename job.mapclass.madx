@@ -24,6 +24,9 @@ call, file="mpt03_v04test.seq";
 use, sequence=mt, range=#s/qa01;
 k1factor := 0.8;
 
+
+value, qa01->k1;
+
 call, file="mubeam.madx";
 ! twiss
 call, file="twiss_select.madx";
