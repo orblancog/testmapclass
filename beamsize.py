@@ -1,7 +1,11 @@
+import sys
+
+sys.path.append('/afs/cern.ch/work/o/oblancog/public/progs/mapclass/MapClass2_C++/MapClass2/')
+sys.path.append('/afs/cern.ch/work/o/oblancog/public/progs/mapclass/MapClass2_C++/MapClass2/C++MapConstruction/')
+
 import mapclass
 import metaclass2
 import math
-
 
 maporder = 5
 print "  Map order is",maporder
