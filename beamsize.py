@@ -1,7 +1,8 @@
-import sys
+import sys, ctypes
 
-sys.path.append('/afs/cern.ch/work/o/oblancog/public/progs/mapclass/MapClass2_C++/MapClass2/')
-sys.path.append('/afs/cern.ch/work/o/oblancog/public/progs/mapclass/MapClass2_C++/MapClass2/C++MapConstruction/')
+sys.path.append('/afs/cern.ch/work/o/oblancog/public/progs/mapclass/MapClass2_C++_2019/MapClass2/')
+sys.path.append('/afs/cern.ch/work/o/oblancog/public/progs/mapclass/MapClass2_C++_2019/MapClass2/C++MapConstruction/')
+ctypes.cdll.LoadLibrary('/afs/cern.ch/work/o/oblancog/public/progs/mapclass/MapClass2_C++_2019/MapClass2/libs/boost_1_53_0/libboost_python.so.1.53.0')
 
 import mapclass
 import metaclass2
@@ -48,4 +49,4 @@ print "    beamsizey =", math.sqrt(snd2ytw - meanytw**2),';'
 print "  "
 print "  Difference between beamsize from fort.18 and twiss maps"
 print "    beamsizex =", ( math.sqrt(snd2xfr - meanxfr**2) - math.sqrt(snd2xtw - meanxtw**2) )/ math.sqrt(snd2xfr - meanxfr**2) * 100,"%"
-print "    beamsizey =", ( math.sqrt(snd2yfr - meanyfr**2) - math.sqrt(snd2ytw - meanytw**2) )/ math.sqrt(snd2xfr - meanxfr**2) * 100,"%"
+print "    beamsizey =", ( math.sqrt(snd2yfr - meanyfr**2) - math.sqrt(snd2ytw - meanytw**2) )/ math.sqrt(snd2yfr - meanyfr**2) * 100,"%"

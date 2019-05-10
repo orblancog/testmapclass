@@ -46,3 +46,5 @@ ptc_create_layout,model=2,method=6,nst=10;
 ptc_normal,icase=6,no=5;!no is the map order
 ptc_end; 
 !!! End MAD-X Code
+
+system, 'python beamsize.py';
